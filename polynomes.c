@@ -15,7 +15,7 @@ int main(void)
     Polynome pBis;
     
     initPolynome(&p);
-    str2Polynome("4x^5+7X^3-2",&p);
+    str2Polynome("4x^5+7X^3-2", &p);
     str2Polynome("3x^2+4X^3", &pBis);
     printf("Polynome a vif:\n");
     affichePolynome(p);  // NE FAIT RIEN TANT QUE VOUS N'AUREZ PAS ECRIT LA FX!
@@ -34,6 +34,8 @@ int main(void)
     printf("Polynome apres Anaphase et Telophase:\n");
     affichePolynome(p);
     printf("\n");
+	affichePolynome(p);
+	affichePolynome(pBis);
     ajouterPolyPolyPolynesie1(&p, pBis);
     printf("Polynome apres meiose:\n");
     affichePolynome(p);
@@ -99,20 +101,19 @@ void affichePolynomeNega(Polynome p, int i)
 			{
 			printf("%dX^%d", p.tab_monomes[i].coeff, p.tab_monomes[i].degre);
 			}
-		else if(p.tab_monomes[i].degre==0)
-			{
-			printf("%d", p.tab_monomes[i].coeff);
-			}
-		else if(p.tab_monomes[i].degre==1)
-			{
-			printf("%dX", p.tab_monomes[i].coeff);
-			}
+	else if(p.tab_monomes[i].degre==0)
+		{
+		printf("1");
+		}
+	else if(p.tab_monomes[i].degre==1)
+		{
+		printf("%dX", p.tab_monomes[i].coeff);
+		}
 		}
 	else
 		{
 		printf("%d", p.tab_monomes[i].coeff);
 		}
-	return;
 	}
 
 void affichePolynomePosi(Polynome p, int i)
@@ -243,7 +244,7 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 		{
 		if(j==i)
 			{
-			k=j;
+			k=j+1;
 			break;
 			}
 		else
@@ -255,15 +256,17 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 		}
 	printf("Monome en i: %d^%d\nPolynome en i: %dX^%d\n\n", remplacement[i].coeff, remplacement[i].degre, p->tab_monomes[i].coeff, p->tab_monomes[i].degre);
 	printf("Monome en k: %dX^%d\n\n", m.coeff, m.degre);
-	remplacement[k].degre = m.degre;
-	remplacement[k].coeff = m.coeff;
+	remplacement[j].degre = m.degre;
+	remplacement[j].coeff = m.coeff;
+	remplacement[k].degre = p->tab_monomes[j].degre;
+	remplacement[k].coeff = p->tab_monomes[j].coeff;
 	printf("Monome en k: %dX^%d\n\n", m.coeff, m.degre);
 	printf("valeur de k: %d\n", k);
 	for(j=0;j<p->nb_monomes+1;j++)
 		{
 		printf("Position j=%d, il y a: %d^%d \n", j, remplacement[j].coeff, remplacement[j].degre);
 		}
-	for(j=0;j<p->nb_monomes+1;j++)
+	for(j=0;j<p->nb_monomes+2;j++)
 		{
 		p->tab_monomes[j].coeff = remplacement[j].coeff;
 		p->tab_monomes[j].degre = remplacement[j].degre;
@@ -283,6 +286,9 @@ void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis)
 		ajouteMonomePolynome(p, pBis.tab_monomes[i]);
 		}
 	}
+
+
+void 
 
 
 

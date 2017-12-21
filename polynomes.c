@@ -197,7 +197,6 @@ void ajouteMonomePolynome(Polynome *p, Monome m)
 	int hahahayapasdedegrejelaiprismonprecieuxdegre = 0;
 	while(i<=p->nb_monomes)
 		{
-		printf("Ici, le monome est %dX^%d\n\n", m.coeff, m.degre);
 		if(p->tab_monomes[i].degre==(m.degre))
 			{
 			p->tab_monomes[i].coeff = p->tab_monomes[i].coeff + m.coeff;
@@ -219,11 +218,10 @@ void ajouteMonomePolynome(Polynome *p, Monome m)
 void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 	{
 	Monome remplacement [MAXMONOME];
+	p->nb_monomes++;
 	int i=0;
 	int j=0;
 	int k=0;
-	printf("\n\n\nNous sommes dans ajouteMonomePolynome\n\n");
-	printf("Ici, le monome est %dX^%d\n\n", m.coeff, m.degre);
 	while(i<p->nb_monomes)
 		{
 		if(p->tab_monomes[i].degre > m.degre)
@@ -238,8 +236,6 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 			}
 		i++;
 		}
-	printf("valeur de i: %d\n", i);
-	printf("valeur de p pour i: %dX^%d\n\n", p->tab_monomes[i].coeff, p->tab_monomes[i].degre);
 	while(j<=p->nb_monomes)
 		{
 		if(j==i)
@@ -254,23 +250,16 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 			}
 		j++;
 		}
-	printf("Monome en i: %d^%d\nPolynome en i: %dX^%d\n\n", remplacement[i].coeff, remplacement[i].degre, p->tab_monomes[i].coeff, p->tab_monomes[i].degre);
-	printf("Monome en k: %dX^%d\n\n", m.coeff, m.degre);
 	remplacement[j].degre = m.degre;
 	remplacement[j].coeff = m.coeff;
 	remplacement[k].degre = p->tab_monomes[j].degre;
 	remplacement[k].coeff = p->tab_monomes[j].coeff;
-	printf("Monome en k: %dX^%d\n\n", m.coeff, m.degre);
-	printf("valeur de k: %d\n", k);
-	for(j=0;j<p->nb_monomes+1;j++)
-		{
-		printf("Position j=%d, il y a: %d^%d \n", j, remplacement[j].coeff, remplacement[j].degre);
-		}
-	for(j=0;j<p->nb_monomes+2;j++)
+	for(j=0;j<=p->nb_monomes;j++)
 		{
 		p->tab_monomes[j].coeff = remplacement[j].coeff;
 		p->tab_monomes[j].degre = remplacement[j].degre;
 		}
+	affichePolynome(*p);
 	}
 
 
@@ -288,7 +277,6 @@ void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis)
 	}
 
 
-void 
 
 
 

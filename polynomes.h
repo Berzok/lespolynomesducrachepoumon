@@ -47,12 +47,14 @@ int multiplieMonomePolynome_degre(int monoDEGRE, int polyDEGRE);
 void ajouteMonomePolynome(Polynome *p, Monome m);
 void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m);
 
-
 void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis);
-
 
 void multipliePolynomePolygamie(Polynome *p, Polynome pBis);
 
+void puissancePolynome(Polynome *pP8ssance, int power);
+
+
+void triPolynome(Polynome *p);
 
 
 int normaliserTermes(Polynome p, int i);

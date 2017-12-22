@@ -44,6 +44,14 @@ int main(void)
     multipliePolynomePolygamie(&p, pBis);
     printf("Polynome apres apparification:\n");
     affichePolynome(p);
+    printf("\n");
+    int power = scanf("%d", &power);
+    printf("A la puissance %d", power);
+    puissancePolynome(&p, power);
+    affichePolynome(p);
+    printf("\n");
+    triPolynome(&p);
+    affichePolynome(p);
     
     
 
@@ -289,12 +297,12 @@ void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis)
 void multipliePolynomePolygamie(Polynome *p, Polynome pBis)
 	{
 	int i , j;
-	for(i=0;i<pBis.nb_monomes;i++)
+	for(i=0;i<p->nb_monomes;i++)
 		{
-		for(j=0;j<p->nb_monomes;j++)
+		for(j=0;j<pBis.nb_monomes;j++)
 			{
-			p->tab_monomes[j].coeff = p->tab_monomes[j].coeff * pBis.tab_monomes[i].coeff;
-			p->tab_monomes[j].degre = p->tab_monomes[j].degre + pBis.tab_monomes[i].degre;
+			p->tab_monomes[i].coeff = p->tab_monomes[i].coeff * pBis.tab_monomes[j].coeff;
+			p->tab_monomes[i].degre = p->tab_monomes[i].degre + pBis.tab_monomes[j].degre;
 			}
 		}
 	}
@@ -302,7 +310,38 @@ void multipliePolynomePolygamie(Polynome *p, Polynome pBis)
 
 
 
+void puissancePolynome(Polynome *pP8ssance, int power)
+	{
+	int i;
+	Polynome pBis = *pP8ssance;
+	for(i=0;i<power;i++)
+		{
+		multipliePolynomePolygamie(pP8ssance, pBis);
+		}
+	}
 
+
+
+
+void triPolynome(Polynome *p)
+	{
+	int i, j;
+	Monome leMonome;
+	leMonome.coeff = 0;
+	leMonome.degre = 0;
+	for(i=0;i<p->nb_monomes-1;i++)
+		{
+		for(j=0;j<p->nb_monomes-1;j++)
+			{
+			if(p->tab_monomes[j].degre<p->tab_monomes[j+1].degre)
+				{
+				leMonome = p->tab_monomes[j];
+				p->tab_monomes[j] = p->tab_monomes[j+1];
+				p->tab_monomes[j+1] = leMonome;
+				}
+			}
+		}
+	}
 
 
 

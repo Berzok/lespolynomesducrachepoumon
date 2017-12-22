@@ -39,6 +39,11 @@ int main(void)
     ajouterPolyPolyPolynesie1(&p, pBis);
     printf("Polynome apres meiose:\n");
     affichePolynome(p);
+    affichePolynome(pBis);
+    printf("\n");
+    multipliePolynomePolygamie(&p, pBis);
+    printf("Polynome apres apparification:\n");
+    affichePolynome(p);
     
     
 
@@ -259,7 +264,6 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m)
 		p->tab_monomes[j].coeff = remplacement[j].coeff;
 		p->tab_monomes[j].degre = remplacement[j].degre;
 		}
-	affichePolynome(*p);
 	}
 
 
@@ -273,6 +277,25 @@ void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis)
 	for(i=0;i<pBis.nb_monomes;i++)
 		{
 		ajouteMonomePolynome(p, pBis.tab_monomes[i]);
+		}
+	}
+
+
+
+
+
+
+
+void multipliePolynomePolygamie(Polynome *p, Polynome pBis)
+	{
+	int i , j;
+	for(i=0;i<pBis.nb_monomes;i++)
+		{
+		for(j=0;j<p->nb_monomes;j++)
+			{
+			p->tab_monomes[j].coeff = p->tab_monomes[j].coeff * pBis.tab_monomes[i].coeff;
+			p->tab_monomes[j].degre = p->tab_monomes[j].degre + pBis.tab_monomes[i].degre;
+			}
 		}
 	}
 

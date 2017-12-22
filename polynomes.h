@@ -51,6 +51,9 @@ void ajouteMonomePolynome_YAPASDEGRE(Polynome *p, Monome m);
 void ajouterPolyPolyPolynesie1(Polynome *p, Polynome pBis);
 
 
+void multipliePolynomePolygamie(Polynome *p, Polynome pBis);
+
+
 
 int normaliserTermes(Polynome p, int i);
 
